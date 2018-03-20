@@ -1,7 +1,7 @@
-var post = document.getElementById('root');
-var allPosts = 'https://jsonplaceholder.typicode.com/posts';
-var comments = document.getElementById('comments');
-var allUsers = `https://jsonplaceholder.typicode.com/users/`;
+const post = document.getElementById('root');
+const allPosts = 'https://jsonplaceholder.typicode.com/posts';
+const comments = document.getElementById('comments');
+const allUsers = `https://jsonplaceholder.typicode.com/users/`;
 
 
 window.addEventListener('hashchange', function() {
@@ -46,9 +46,7 @@ function postDetail(post) {
 }
 
 function createComments(comments) {
-    return `<ul>
-                <li>${comments.body}</li>
-            </ul>`
+    return `<p class = "comments"> - ${comments.body}</p>`
 }
 
 function author(author) {
