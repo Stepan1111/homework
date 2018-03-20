@@ -67,5 +67,10 @@
     text-align:center;
 }
 .comments{
+    margin-left: 30px;
     padding: 10px;
+}
+.author p {
+    text-align: center;
+    padding:30px;
 }

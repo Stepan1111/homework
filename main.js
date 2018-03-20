@@ -1,25 +1,21 @@
+{
 const post = document.getElementById('root');
 const allPosts = 'https://jsonplaceholder.typicode.com/posts';
 const comments = document.getElementById('comments');
 const allUsers = `https://jsonplaceholder.typicode.com/users/`;
 
-
 window.addEventListener('hashchange', function() {
     let way = location.hash
     let ID = way.match(/\d+/g).toString();
-    if (way.includes('post')) {
-        setAllPosts(`${allPosts}/${ID}`, post, postDetail);
-        setAllPosts(`${allPosts}/${ID}/comments`, comments, createComments);
-        console.log("1")
-    }
-    else if (way.includes('author')) {
-        comments.innerHTML = '';
-        setAllPosts(`${allUsers}${ID}`, post, author)
-        console.log("2")
-    }
-    else if (way == '') {
-        setAllPosts(allPosts, post, createPost);
-        console.log("3")
+    switch(true) {
+        case way.includes('post'):  
+            setAllPosts(`${allPosts}/${ID}`, post, postDetail);
+            setAllPosts(`${allPosts}/${ID}/comments`, comments, createComments);
+            break;
+        case way.includes("author"):  
+            comments.innerHTML = '';
+            setAllPosts(`${allUsers}${ID}`, post, author)
+            break;
     }
 });
 
@@ -50,15 +46,14 @@ function createComments(comments) {
 }
 
 function author(author) {
-    return `<div class="">
-                <h4>${author.name}</h4>
-                <p>${author.phone}</p>
-                <p>${author.email}</p>
-                <p>${author.website}</p>
-                <p>${author.address.suite} ${author.address.street}, ${author.address.city}</p>
+    return `<div class="author">
+                <p>Name : ${author.name}</p>
+                <p>Phone : ${author.phone}</p>
+                <p>E-Mail : ${author.email}</p>
+                <p>Website : ${author.website}</p>
+                <p>Adress : ${author.address.suite} ${author.address.street}, ${author.address.city}</p>
             </div>`;
 }
-
 
 setAllPosts(allPosts,post,createPost)
 
@@ -76,4 +71,4 @@ function setAllPosts(postUrl, postInfo, neededFunc) {
             }
         })
 }
-
+}
